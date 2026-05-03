@@ -1,0 +1,23 @@
+<div class="search-filter-container">
+  <div class="search-box">
+    <input 
+      type="text" 
+      placeholder="Search for a country..."
+      [(ngModel)]="searchTerm"
+      (input)="onSearchChange()"
+      class="search-input">
+  </div>
+
+  <div class="filter-dropdown">
+    <select 
+      [(ngModel)]="selectedRegion" 
+      (change)="onRegionChange()"
+      class="region-select">
+      <option 
+        *ngFor="let region of regions" 
+        [value]="region.value">
+        {{ region.label }}
+      </option>
+    </select>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="country-card" (click)="onCardClick()">
+  <div class="flag-container">
+    <img [src]="country.flags.png" [alt]="'Flag of ' + country.name.common" class="flag">
+  </div>
+  
+  <div class="country-info">
+    <h2 class="country-name">{{ country.name.common }}</h2>
+    
+    <div class="country-details">
+      <p class="detail-item">
+        <span class="detail-label">Population:</span>
+        <span class="detail-value">{{ country.population | number }}</span>
+      </p>
+      
+      <p class="detail-item">
+        <span class="detail-label">Region:</span>
+        <span class="detail-value">{{ country.region }}</span>
+      </p>
+      
+      <p class="detail-item" *ngIf="country.capital && country.capital.length > 0">
+        <span class="detail-label">Capital:</span>
+        <span class="detail-value">{{ country.capital[0] }}</span>
+      </p>
+    </div>
+  </div>
+</div>

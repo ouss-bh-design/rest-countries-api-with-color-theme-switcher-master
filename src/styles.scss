@@ -1,0 +1,61 @@
+// Variables from style guide
+:root {
+  // Light mode colors
+  --light-mode-text: hsl(200, 15%, 8%);
+  --light-mode-input: hsl(0, 0%, 50%);
+  --light-mode-background: hsl(0, 0%, 99%);
+  --light-mode-elements: hsl(0, 100%, 100%);
+  
+  // Dark mode colors
+  --dark-mode-text: hsl(0, 100%, 100%);
+  --dark-mode-background: hsl(207, 26%, 17%);
+  --dark-mode-elements: hsl(209, 23%, 22%);
+}
+
+// Base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: var(--light-mode-background);
+  color: var(--light-mode-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: var(--dark-mode-background);
+  color: var(--dark-mode-text);
+}
+
+// Common styles
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: var(--light-mode-elements);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dark-mode .card {
+  background-color: var(--dark-mode-elements);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}

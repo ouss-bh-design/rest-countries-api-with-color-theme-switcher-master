@@ -1,0 +1,79 @@
+<div class="country-detail-container" *ngIf="!loading && !error && country">
+  <div class="container">
+    <button class="back-button" (click)="onBackClick()">
+      <span class="back-icon">←</span>
+      Back
+    </button>
+
+    <div class="country-content">
+      <div class="country-flag">
+        <img [src]="country.flags.png" [alt]="'Flag of ' + country.name.common">
+      </div>
+
+      <div class="country-info">
+        <h1 class="country-name">{{ country.name.common }}</h1>
+
+        <div class="country-details-grid">
+          <div class="details-column">
+            <p class="detail-item">
+              <span class="detail-label">Native Name:</span>
+              <span class="detail-value">{{ getNativeName() }}</span>
+            </p>
+            <p class="detail-item">
+              <span class="detail-label">Population:</span>
+              <span class="detail-value">{{ country.population | number }}</span>
+            </p>
+            <p class="detail-item">
+              <span class="detail-label">Region:</span>
+              <span class="detail-value">{{ country.region }}</span>
+            </p>
+            <p class="detail-item">
+              <span class="detail-label">Sub Region:</span>
+              <span class="detail-value">{{ country.subregion || 'N/A' }}</span>
+            </p>
+            <p class="detail-item">
+              <span class="detail-label">Capital:</span>
+              <span class="detail-value">{{ country.capital && country.capital[0] ? country.capital[0] : 'N/A' }}</span>
+            </p>
+          </div>
+
+          <div class="details-column">
+            <p class="detail-item">
+              <span class="detail-label">Top Level Domain:</span>
+              <span class="detail-value">{{ country.tld && country.tld.length > 0 ? country.tld.join(', ') : 'N/A' }}</span>
+            </p>
+            <p class="detail-item">
+              <span class="detail-label">Currencies:</span>
+              <span class="detail-value">{{ getCurrencies() || 'N/A' }}</span>
+            </p>
+            <p class="detail-item">
+              <span class="detail-label">Languages:</span>
+              <span class="detail-value">{{ getLanguages() || 'N/A' }}</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="border-countries" *ngIf="country.borders && country.borders.length > 0">
+          <h3 class="border-title">Border Countries:</h3>
+          <div class="border-buttons">
+            <button 
+              *ngFor="let borderCountry of borderCountries" 
+              class="border-country-btn"
+              (click)="onBorderCountryClick(borderCountry)">
+              {{ borderCountry.name.common }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading" *ngIf="loading">
+  <p>Loading country details...</p>
+</div>
+
+<div class="error" *ngIf="error">
+  <p>{{ error }}</p>
+  <button class="retry-btn" (click)="onBackClick()">Back to Home</button>
+</div>

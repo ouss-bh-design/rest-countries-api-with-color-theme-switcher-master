@@ -1,0 +1,29 @@
+<div class="home-container">
+  <div class="container">
+    <app-search-filter 
+      (search)="onSearch($event)" 
+      (filterRegion)="onFilterRegion($event)">
+    </app-search-filter>
+
+    <div class="countries-grid" *ngIf="!loading && !error">
+      <app-country-card 
+        *ngFor="let country of filteredCountries" 
+        [country]="country"
+        (click)="onCountryClick(country)">
+      </app-country-card>
+    </div>
+
+    <div class="loading" *ngIf="loading">
+      <p>Loading countries...</p>
+    </div>
+
+    <div class="error" *ngIf="error">
+      <p>{{ error }}</p>
+      <button class="retry-btn" (click)="loadCountries()">Retry</button>
+    </div>
+
+    <div class="no-results" *ngIf="!loading && !error && filteredCountries.length === 0">
+      <p>No countries found matching your criteria.</p>
+    </div>
+  </div>
+</div>
